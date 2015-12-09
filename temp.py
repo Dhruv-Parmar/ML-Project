@@ -11,7 +11,7 @@ from sklearn import preprocessing
 from sklearn import svm
 from sklearn import grid_search
 from numpy import array
-poop = io.loadmat("C:/Users/Dhruv/Documents/Durv's HD/Poly Temp/Machine Learning/cs6923Project.mat")
+poop = io.loadmat("cs6923Project.mat")
 
 testvar = poop.get('test')
 trainvar = poop.get('train')
@@ -24,9 +24,10 @@ test_scale = scale.transform(testvar)
 gird = [{'C':[0.01], 'kernel' : ['linear']}]
 suppvec = svm.SVC()
 suppvec1 = grid_search.GridSearchCV(suppvec, gird, cv = 6, n_jobs = 10)
-
+print('Start1')
 ydirlin = suppvec1.fit(train_scale,trainl)
 
+print('Start')
 testsetvar = []
 predvar = []
 j=0
@@ -36,7 +37,7 @@ for i in range(50000):
     testsetvar.append(ydirlin.predict(test_scale[i]))
     if (ydirlin.predict(train_scale[i]) == trainl[i]):
         j += 1
-        
+print('Done')        
         
 io.savemat('train_var_predict.mat', {'predict' : predvar})
 io.savemat('test_var_predict.mat', {'predict': testsetvar})
