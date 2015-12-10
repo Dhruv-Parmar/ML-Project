@@ -21,7 +21,7 @@ scale  = preprocessing.MinMaxScaler().fit(trainvar) #normalizing the data
 train_scale = scale.transform(trainvar)
 test_scale = scale.transform(testvar)
 
-gird = [{'C':[0.01], 'kernel' : ['linear']}]
+gird = [{'C':[0.1], 'kernel' : ['linear']}]
 suppvec = svm.SVC()
 suppvec1 = grid_search.GridSearchCV(suppvec, gird, cv = 10, n_jobs = 10)
 print('Start1')
